@@ -40,6 +40,18 @@ public class TextGenerator {
 		} catch (IOException e) {
 			throw new IOException("Can't load the data file.", e);
 		}
+		
+		Markov modelKorwin = new Markov(Paths.get("data/korwin.txt"));		
+		
+		try (BufferedWriter writer = Files.newBufferedWriter(Paths.get("data/korwin_results.txt"), Charset.forName("Cp1252"))) {
+			for(int i=0; i<100; i++){
+    			writer.write(generateLine(modelKorwin));
+    			writer.newLine();
+    		}   
+		
+		} catch (IOException e) {
+			throw new IOException("Can't load the data file.", e);
+		}
 	}
 	
 	public static String generateLine(Markov model){
@@ -70,7 +82,7 @@ public class TextGenerator {
 			for (String word : model.transitions.get(state).keySet()){
 				wordProb = model.transitions.get(state).get(word);
 				if (random >= cumulative && random < cumulative+wordProb){
-					if(word!="finalState") line += (" " + word);
+					if(word!="FinalState") line += (" " + word);
 					state = word;
 					break;
 				}
