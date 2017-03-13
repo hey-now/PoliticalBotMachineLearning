@@ -20,7 +20,10 @@ public class Tester {
 	public static void main(String[] args) throws IOException {
 
 		loadData(Paths.get("data/trump.txt"),ClassType.TRUMP);
+		//System.out.println(dataSet.size());
 		loadData(Paths.get("data/obama.txt"),ClassType.OBAMA);
+		//System.out.println(dataSet.size());
+
 		
 		List<Map<List<String>, ClassType>> folds = DataSplit.splitCVStratifiedRandom(dataSet, 0);
 
@@ -39,15 +42,13 @@ public class Tester {
 
 		Map<String, Map<ClassType, Double>> smoothedLogProbs = implementationNB
 				.calculateSmoothedLogProbs(trainingSet);
-		 System.out.println("Log probabilities of smoothed classifier:");
+		 //System.out.println("Log probabilities of smoothed classifier:");
 		 //System.out.println(smoothedLogProbs);
-		 System.out.println();
+		 //System.out.println();
 
 		Map<List<String>, ClassType> smoothedNBPredictions = implementationNB.naiveBayes(validationSet.keySet(),
 				smoothedLogProbs, classProbabilities);
 
-		System.out.println(trainingSet.size());
-		System.out.println(smoothedNBPredictions.size());
 		
 		double smoothedNBAccuracy = calculateAccuracy(validationSet, smoothedNBPredictions);
 		System.out.println("Naive Bayes classifier accuracy with smoothing:");
@@ -133,7 +134,7 @@ public class Tester {
 					smoothedLogProbs, classProbabilities);
 
 			double smoothedNBAccuracy = calculateAccuracy(validationSet, smoothedNBPredictions);
-			System.out.println("Naive Bayes classifier accuracy for fold "+ i + " : "+smoothedNBAccuracy);
+			System.out.println("Naive Bayes classifier accuracy with fold "+ i + " used for testing: "+smoothedNBAccuracy);
 
 			results[i]=smoothedNBAccuracy ;
 		}

@@ -25,7 +25,7 @@ public class Markov {
 		loadInitialProb(data);
 		loadTransitionProb(data);
 		
-		System.out.println(initialProbs);
+		//System.out.println(initialProbs);
 	}
 	
 	
@@ -35,12 +35,8 @@ public class Markov {
 	public static List<List<String>> loadFile(Path sequenceFile) throws IOException {
 		List<List<String>> words = new LinkedList<List<String>>();
 		
-		System.out.println(sequenceFile);
-		
-		
 		try (BufferedReader reader = Files.newBufferedReader(sequenceFile, Charset.forName("Cp1252"))) {
-        	System.out.println("abc");
-
+        	
 			String line = null;
 			 
 	        while ((line = reader.readLine()) != null) {

@@ -26,10 +26,7 @@ public class DataSplit {
 			temp++;
 			classSizes.put(person, temp);
 		}
-		
-		
-		//int setSizePerLabel = 3460 / 20;
-		
+				
 		Set<ClassType> possibleLabels = new HashSet<ClassType>(dataSet.values());
 		Map<ClassType, List<List<String>>> labelListPaths = new HashMap<ClassType, List<List<String>>>();
 		for (ClassType label: possibleLabels) {
